@@ -69,46 +69,21 @@ class _AddcontactState extends State<Addcontact> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: 20,),
-                Stack(
-                  children: [
-                    Path != ""?
-                    Container(
-                      height: 220,
-                      alignment: Alignment.center,
-                      child: CircleAvatar(
-                        radius: 100,
-                        backgroundImage: FileImage(File("$Pathe")),
-                      ),
-                    ) :
-                      Container(
-                      height: 220,
-                      alignment: Alignment.center,
-                      child: CircleAvatar(
-                        radius: 100,
-                        backgroundImage: AssetImage("assets/images/addphoto.jpg"),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 250,top: 150),
-                      child: Container(
-                        height: 40,
-                        width: 40,
-                        alignment: Alignment.center,
-                        child: IconButton(onPressed: () async {
-                          final ImagePicker photo = ImagePicker();
-                          final XFile? image = await photo.pickImage(source: ImageSource.gallery);
-                          setState(() {
-                            Pathe = image!.path;
-                          });
-
-                        }, icon: Icon(Icons.add,color: Colors.black54,)),
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(50)
-                        ),
-                      ),
-                    )
-                  ],
+                Pathe != ""?
+                Container(
+                  height: 220,
+                  alignment: Alignment.center,
+                  child: CircleAvatar(
+                    radius: 100,
+                    backgroundImage: FileImage(File("$Pathe")),
+                  ),
+                ) :
+                  Container(
+                  alignment: Alignment.center,
+                  child: CircleAvatar(
+                    radius: 100,
+                    backgroundImage: AssetImage("assets/images/addphoto.jpg"),
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.all(10),
@@ -156,6 +131,59 @@ class _AddcontactState extends State<Addcontact> {
                       )
                     ),
                   ),
+                ),
+                ExpansionTile(
+
+                  title: Text("Add photo"),
+                  childrenPadding: EdgeInsets.symmetric(horizontal: 10),
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: InkWell(
+                            onTap: () async {
+                              final ImagePicker photo = ImagePicker();
+                              final XFile? image = await photo.pickImage(source: ImageSource.camera);
+                              setState(() {
+                                Pathe = image!.path;
+                              });
+                            },
+                            child: Container(
+                               height: 50,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(50)
+                              ),
+                              alignment: Alignment.center,
+                              child: Icon(Icons.camera_alt_outlined,color: Colors.white,),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10,),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () async {
+                              final ImagePicker photo = ImagePicker();
+                              final XFile? image = await photo.pickImage(source: ImageSource.gallery);
+                              setState(() {
+                                Pathe = image!.path;
+                              });
+                            },
+                            child: Container(
+                             height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(50)
+                              ),
+                              alignment: Alignment.center,
+                              child: Icon(Icons.photo_album_outlined,color: Colors.white,),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),

@@ -78,7 +78,11 @@ class _HomescreenState extends State<Homescreen> {
               itemBuilder: (context, index) {
                 return InkWell(
                     onTap: (){
-                      Navigator.pushNamed(context, 'moe');
+                      Pathe = Imagespath[index];
+                      Navigator.pushNamed(context, 'moe',arguments: index).then((value) {
+                        setState(() {
+                        });
+                      });
                     },
                     child: Con(name[index], Imagespath[index]));
               },
