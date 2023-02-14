@@ -10,7 +10,7 @@ void main()
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-     // initialRoute: 'add',
+     //initialRoute: 'Icon(Icons.cancel,color: Colors.black,),',
       routes: {
         '/':(context)=>Homescreen(),
         'add':(context)=>Addcontact(),

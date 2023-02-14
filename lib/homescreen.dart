@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:contact_diary/variables.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -69,8 +68,7 @@ class _HomescreenState extends State<Homescreen> {
                   size: 30,
                 ),
               ),
-              SizedBox(
-                width: 30,
+              SizedBox(      width: 30,
               ),
             ],
           ),
@@ -78,7 +76,11 @@ class _HomescreenState extends State<Homescreen> {
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, index) {
-                return Con(name[index], Imagespath[index]);
+                return InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, 'moe');
+                    },
+                    child: Con(name[index], Imagespath[index]));
               },
               //shrinkWrap: true,
               itemCount: name.length,

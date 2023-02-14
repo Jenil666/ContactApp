@@ -28,6 +28,12 @@ class _AddcontactState extends State<Addcontact> {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
+            leading: IconButton(onPressed: () {
+              Navigator.pop(context);
+              Pathe = "";
+              txtnumber.clear();
+              txtname.clear();
+            }, icon: Icon(Icons.cancel,color: Colors.black,),),
             actions: [
              IconButton(onPressed: () {
               if(FormKey.currentState!.validate())
@@ -36,11 +42,11 @@ class _AddcontactState extends State<Addcontact> {
                     print(name);
                     name.add(txtname.text);
                     number.add(txtnumber.text);
-                    Imagespath.add(Path);
+                    Imagespath.add(Pathe);
                   });
                   txtnumber.clear();
                   txtname.clear();
-                  Path = "";
+                  Pathe = "";
 
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Data Received 😊"),duration: Duration(seconds: 1),));
                   Navigator.pop(context);
@@ -71,10 +77,10 @@ class _AddcontactState extends State<Addcontact> {
                       alignment: Alignment.center,
                       child: CircleAvatar(
                         radius: 100,
-                        backgroundImage: FileImage(File("$Path")),
+                        backgroundImage: FileImage(File("$Pathe")),
                       ),
-                    ):
-                    Container(
+                    ) :
+                      Container(
                       height: 220,
                       alignment: Alignment.center,
                       child: CircleAvatar(
@@ -92,7 +98,7 @@ class _AddcontactState extends State<Addcontact> {
                           final ImagePicker photo = ImagePicker();
                           final XFile? image = await photo.pickImage(source: ImageSource.gallery);
                           setState(() {
-                            Path = image!.path;
+                            Pathe = image!.path;
                           });
 
                         }, icon: Icon(Icons.add,color: Colors.black54,)),
